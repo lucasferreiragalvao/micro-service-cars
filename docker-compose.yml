@@ -12,3 +12,13 @@ services:
     expose:
       - 15672
       - 5672
+  mongodb:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 1234
+    ports:
+      - 27020:27017
+    volumes:
+      - ./mongo-volume:/data/db
