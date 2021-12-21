@@ -1,0 +1,14 @@
+version: "2"
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq-microservice-cars
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: 1234
+    ports:
+      - 15672:15672
+      - 5672:5672
+    expose:
+      - 15672
+      - 5672
