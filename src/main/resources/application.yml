@@ -1,0 +1,8 @@
+server:
+  port: 8080
+spring:
+  aplication:
+    name: Car-Api
+  data:
+    mongodb:
+      uri: mongodb://root:1234@localhost:27020/cars-api
