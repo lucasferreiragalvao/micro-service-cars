@@ -6,7 +6,10 @@ import com.unifacef.work.groupone.microservicecars.domains.Classification;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -22,6 +25,9 @@ public class CarDocument {
     private String name;
     private String board;
     private Double tankSize;
+    private LocalDateTime createdDate;
+    @LastModifiedDate
+    private LocalDateTime lastModifiedDate;
 
     public CarDocument(final Car car){
         this.id = car.getCode();
@@ -33,6 +39,8 @@ public class CarDocument {
         this.name = car.getName();
         this.board = car.getBoard();
         this.tankSize = car.getTankSize();
+        this.createdDate = car.getCreatedAt();
+        this.lastModifiedDate = car.getLastModifiedDate();
     }
 
     public Car toDomain(){
@@ -46,6 +54,8 @@ public class CarDocument {
                 .name(this.name)
                 .board(this.board)
                 .tankSize(this.tankSize)
+                .createdAt(this.createdDate)
+                .lastModifiedDate(this.lastModifiedDate)
                 .build();
     }
 }

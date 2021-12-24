@@ -8,6 +8,9 @@ import java.util.Optional;
 
 public interface CarDataGateway {
 
+    Car save(Car car);
+
     Optional<Car> findByCode(String code);
+
     Page<Car> findByPage(Pageable pageable);
 }
