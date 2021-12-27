@@ -3,6 +3,7 @@ package com.unifacef.work.groupone.microservicecars.gateways.inputs.http.respons
 
 import com.unifacef.work.groupone.microservicecars.domains.Car;
 import com.unifacef.work.groupone.microservicecars.domains.Classification;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -11,14 +12,31 @@ import java.io.Serializable;
 public class CarResponse implements Serializable {
     private static final long serialVersionUID = 9189520552888285200L;
 
+    @ApiModelProperty(position = 0)
     private String code;
+
+    @ApiModelProperty(position = 1)
     private int year;
+
+    @ApiModelProperty(position = 2)
     private String color;
+
+    @ApiModelProperty(position = 3)
     private Classification classification;
+
+    @ApiModelProperty(position = 4)
     private BrandResponse brand;
+
+    @ApiModelProperty(position = 5)
     private String model;
+
+    @ApiModelProperty(position = 6)
     private String name;
+
+    @ApiModelProperty(position = 6)
     private String board;
+
+    @ApiModelProperty(position = 7)
     private Double tankSize;
 
     public CarResponse(final Car car){
