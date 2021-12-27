@@ -48,4 +48,10 @@ public abstract class CarRequest implements Serializable {
     @Min(value = 1,message = "{required.min}")
     private Double tankSize;
 
+    @ApiModelProperty(position = 9)
+    private Boolean isActive;
+
+    @ApiModelProperty(position = 10)
+    private String note = "";
+
 }

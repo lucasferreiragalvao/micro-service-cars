@@ -4,10 +4,10 @@ import com.unifacef.work.groupone.microservicecars.gateways.inputs.http.requests
 import com.unifacef.work.groupone.microservicecars.gateways.inputs.http.requests.UpdateCarRequest;
 import com.unifacef.work.groupone.microservicecars.gateways.inputs.http.responses.CarResponse;
 import com.unifacef.work.groupone.microservicecars.gateways.inputs.http.responses.ListResponse;
-import com.unifacef.work.groupone.microservicecars.usecases.CreateCar;
 import com.unifacef.work.groupone.microservicecars.usecases.FindByCarCode;
-import com.unifacef.work.groupone.microservicecars.usecases.FindCars;
 import com.unifacef.work.groupone.microservicecars.usecases.UpdateCar;
+import com.unifacef.work.groupone.microservicecars.usecases.CreateCar;
+import com.unifacef.work.groupone.microservicecars.usecases.FindCars;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
