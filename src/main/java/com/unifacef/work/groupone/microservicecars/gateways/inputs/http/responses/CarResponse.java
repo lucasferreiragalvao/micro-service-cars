@@ -39,6 +39,12 @@ public class CarResponse implements Serializable {
     @ApiModelProperty(position = 7)
     private Double tankSize;
 
+    @ApiModelProperty(position = 8)
+    private Boolean isActive;
+
+    @ApiModelProperty(position = 9)
+    private String note;
+
     public CarResponse(final Car car){
         this.code = car.getCode();
         this.year = car.getYear();
@@ -49,5 +55,7 @@ public class CarResponse implements Serializable {
         this.name = car.getName();
         this.board = car.getBoard();
         this.tankSize = car.getTankSize();
+        this.isActive = car.getIsActive();
+        this.note = car.getNote();
     }
 }
