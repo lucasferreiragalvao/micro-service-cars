@@ -52,6 +52,6 @@ public abstract class CarRequest implements Serializable {
     private Boolean isActive;
 
     @ApiModelProperty(position = 10)
-    private String note = "";
+    private String note;
 
 }
