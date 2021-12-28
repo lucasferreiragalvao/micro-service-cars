@@ -64,6 +64,15 @@ public class CustomExceptionHandler {
         return new ResponseEntity<>(message, responseHeaders, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(Throwable.class)
+    public HttpEntity<ErrorResponse> handleThrowable(final Throwable ex) {
+        log.error(ex.getMessage(), ex);
+        final HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.add(CONTENT_TYPE, APPLICATION_JSON_CHARSET_UTF_8);
+        return new ResponseEntity<>(
+                createMessage(ex), responseHeaders, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     private ErrorResponse createMessage(final Throwable ex){
         ErrorResponse message = null;
         if (isNotBlank(ex.getMessage())) {

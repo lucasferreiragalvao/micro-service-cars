@@ -25,9 +25,22 @@ public class CreateCar {
     }
 
     private void validate(Car car){
+       validateCarIsNotActiveAndNoteIsNullOrEmpty(car);
+       boardIsExist(car);
+    }
+
+    private void validateCarIsNotActiveAndNoteIsNullOrEmpty(Car car){
         if(!car.getIsActive() && car.getNote().equals("")){
             log.info("Note cannot be empty when Car Inactive");
             throw new BadRequestException(messageUtils.getMessage(MessageKey.CAR_NOTE_EMPTY_CAR_INACTIVE));
         }
     }
+
+    private void boardIsExist(Car car){
+        if(!carDataGateway.findByBoard(car.getBoard()).isEmpty()){
+            log.info("Car already exists. Car board: {}",car.getBoard());
+            throw new IllegalArgumentException(messageUtils.getMessage(MessageKey.CAR_ALREADY_EXISTS,car.getBoard()));
+        }
+    }
+
 }
