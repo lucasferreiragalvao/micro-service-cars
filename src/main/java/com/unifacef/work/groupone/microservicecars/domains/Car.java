@@ -17,6 +17,7 @@ public class Car {
     private String name;
     private String board;
     private Double tankSize;
+    private Long odomenter;
     private Boolean isActive;
     private String note;
     private LocalDateTime createdAt;

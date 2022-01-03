@@ -23,6 +23,8 @@ public class PatchCar {
         Car oldCar = carDataGateway.findByCode(car.getCode())
                 .orElseThrow(() -> new NotFoundException(messageUtils.getMessage(MessageKey.CAR_NOT_FOUND,car.getCode())));
 
+        validateValueOdomenter(car.getOdomenter(),oldCar.getOdomenter());
+
         if(car.getIsActive() != null) {
             oldCar.setIsActive(car.getIsActive());
         }
@@ -33,14 +35,31 @@ public class PatchCar {
             oldCar.setNote(car.getNote());
         }
 
+        if(car.getOdomenter() != null){
+            oldCar.setOdomenter(car.getOdomenter());
+        }
+
         Car saved = carDataGateway.save(oldCar);
         return saved;
     }
 
     private void validate(Car car){
+        validateCarIsNotActiveAndNoteIsNullOrEmpty(car);
+    }
+
+    private void validateCarIsNotActiveAndNoteIsNullOrEmpty(Car car){
         if(car.getIsActive() != null && !car.getIsActive() && (car.getNote() == null || car.getNote().equals(""))){
             log.info("Note cannot be empty when Car Inactive");
             throw new BadRequestException(messageUtils.getMessage(MessageKey.CAR_NOTE_EMPTY_CAR_INACTIVE));
         }
     }
+
+    private void validateValueOdomenter(Long newOdomenter, Long oldOdomenter){
+        if(newOdomenter < oldOdomenter){
+            log.info("The new odometer value cannot be lower than the previous one");
+            throw new IllegalArgumentException(messageUtils.getMessage(MessageKey.CAR_NEW_VALUE_ODOMENTER_LOWER_OLD_VALUE,oldOdomenter));
+        }
+    }
+
+
 }

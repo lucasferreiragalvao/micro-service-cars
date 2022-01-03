@@ -40,9 +40,12 @@ public class CarResponse implements Serializable {
     private Double tankSize;
 
     @ApiModelProperty(position = 8)
-    private Boolean isActive;
+    private Long odomenter;
 
     @ApiModelProperty(position = 9)
+    private Boolean isActive;
+
+    @ApiModelProperty(position = 10)
     private String note;
 
     public CarResponse(final Car car){
@@ -54,6 +57,7 @@ public class CarResponse implements Serializable {
         this.model = car.getModel();
         this.name = car.getName();
         this.board = car.getBoard();
+        this.odomenter = car.getOdomenter();
         this.tankSize = car.getTankSize();
         this.isActive = car.getIsActive();
         this.note = car.getNote();

@@ -25,6 +25,7 @@ public class CarDocument {
     private String name;
     private String board;
     private Double tankSize;
+    private Long odomenter;
     private Boolean isActive;
     private String note;
     private LocalDateTime createdDate;
@@ -41,6 +42,7 @@ public class CarDocument {
         this.name = car.getName();
         this.board = car.getBoard();
         this.tankSize = car.getTankSize();
+        this.odomenter = car.getOdomenter();
         this.isActive = car.getIsActive();
         this.note = car.getNote();
         this.createdDate = car.getCreatedAt();
@@ -57,6 +59,7 @@ public class CarDocument {
                 .model(this.model)
                 .name(this.name)
                 .board(this.board)
+                .odomenter(this.odomenter)
                 .tankSize(this.tankSize)
                 .isActive(this.isActive)
                 .note(this.note)

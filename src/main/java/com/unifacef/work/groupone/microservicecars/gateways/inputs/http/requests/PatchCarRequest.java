@@ -17,9 +17,13 @@ public class PatchCarRequest implements Serializable {
     @ApiModelProperty(position = 2)
     private String note;
 
+    @ApiModelProperty(position = 3)
+    private Long odomenter;
+
     public Car toDomain(final String code){
         return Car.builder()
                 .code(code)
+                .odomenter(this.odomenter)
                 .isActive(this.isActive)
                 .note(this.note)
                 .build();

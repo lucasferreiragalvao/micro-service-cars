@@ -23,6 +23,7 @@ public class UpdateCar {
         Car oldCar = carDataGateway.findByCode(car.getCode())
                 .orElseThrow(() -> new NotFoundException(messageUtils.getMessage(MessageKey.CAR_NOT_FOUND,car.getCode())));
 
+        validateValueOdomenter(car.getOdomenter(),oldCar.getOdomenter());
         car.setCreatedAt(oldCar.getCreatedAt());
         Car saved = carDataGateway.save(car);
         return saved;
@@ -41,9 +42,16 @@ public class UpdateCar {
     }
 
     private void boardIsExist(Car car){
-        if(!carDataGateway.findByBoard(car.getBoard()).isEmpty()){
+        if(!carDataGateway.findByBoard(car.getBoard()).get().getCode().equals(car.getCode())){
             log.info("Car already exists. Car board: {}",car.getBoard());
             throw new IllegalArgumentException(messageUtils.getMessage(MessageKey.CAR_ALREADY_EXISTS,car.getBoard()));
+        }
+    }
+
+    private void validateValueOdomenter(Long newOdomenter, Long oldOdomenter){
+        if(newOdomenter < oldOdomenter){
+            log.info("The new odometer value cannot be lower than the previous one.Current odomenter value {}",oldOdomenter);
+            throw new IllegalArgumentException(messageUtils.getMessage(MessageKey.CAR_NEW_VALUE_ODOMENTER_LOWER_OLD_VALUE,oldOdomenter));
         }
     }
 }
