@@ -13,6 +13,7 @@ public class CreateCarRequest extends CarRequest{
                 .model(super.getModel())
                 .color(super.getColor())
                 .tankSize(super.getTankSize())
+                .odomenter(super.getOdomenter())
                 .isActive(super.getIsActive())
                 .note(super.getNote())
                 .build();

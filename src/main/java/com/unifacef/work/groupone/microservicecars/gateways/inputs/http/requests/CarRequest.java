@@ -49,9 +49,14 @@ public abstract class CarRequest implements Serializable {
     private Double tankSize;
 
     @ApiModelProperty(position = 9)
-    private Boolean isActive;
+    @NotNull(message = "{required.field}")
+    private Long odomenter;
 
     @ApiModelProperty(position = 10)
+    private Boolean isActive;
+
+    @ApiModelProperty(position = 11)
     private String note;
+
 
 }
