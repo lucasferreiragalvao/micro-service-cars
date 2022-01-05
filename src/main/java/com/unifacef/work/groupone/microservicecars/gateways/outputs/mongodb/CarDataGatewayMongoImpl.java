@@ -38,6 +38,11 @@ public class CarDataGatewayMongoImpl implements CarDataGateway {
     }
 
     @Override
+    public Optional<Car> findByClassificationCode(String code) {
+        return carRepository.findByClassificationId(code).map(CarDocument::toDomain);
+    }
+
+    @Override
     public Page<Car> findByPage(Pageable pageable) {
         return carRepository.findAll(pageable).map(CarDocument::toDomain);
     }

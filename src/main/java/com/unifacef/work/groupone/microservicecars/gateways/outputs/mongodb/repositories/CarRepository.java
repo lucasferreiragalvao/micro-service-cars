@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface CarRepository extends MongoRepository<CarDocument,String> {
     Optional<CarDocument> findByBoard(String board);
+    Optional<CarDocument> findByClassificationId(String code);
 }
