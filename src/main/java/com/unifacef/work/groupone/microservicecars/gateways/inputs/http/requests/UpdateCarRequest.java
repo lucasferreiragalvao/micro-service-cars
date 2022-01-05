@@ -1,6 +1,7 @@
 package com.unifacef.work.groupone.microservicecars.gateways.inputs.http.requests;
 
 import com.unifacef.work.groupone.microservicecars.domains.Car;
+import com.unifacef.work.groupone.microservicecars.domains.Classification;
 
 public class UpdateCarRequest extends CarRequest{
     private static final long serialVersionUID = 8743997776881612716L;
@@ -9,7 +10,7 @@ public class UpdateCarRequest extends CarRequest{
         return Car.builder()
                 .code(code)
                 .brand(super.getBrand().toDomain())
-                .classification(super.getClassification())
+                .classification(Classification.builder().code(super.getCodeclassification()).build())
                 .name(super.getName())
                 .board(super.getBoard())
                 .year(super.getYear())

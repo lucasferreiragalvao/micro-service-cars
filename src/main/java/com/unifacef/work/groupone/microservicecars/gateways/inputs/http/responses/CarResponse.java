@@ -22,7 +22,7 @@ public class CarResponse implements Serializable {
     private String color;
 
     @ApiModelProperty(position = 3)
-    private Classification classification;
+    private ClassificationResponse classification;
 
     @ApiModelProperty(position = 4)
     private BrandResponse brand;
@@ -52,7 +52,7 @@ public class CarResponse implements Serializable {
         this.code = car.getCode();
         this.year = car.getYear();
         this.color = car.getColor();
-        this.classification = car.getClassification();
+        this.classification = new ClassificationResponse(car.getClassification());
         this.brand = new BrandResponse(car.getBrand());
         this.model = car.getModel();
         this.name = car.getName();

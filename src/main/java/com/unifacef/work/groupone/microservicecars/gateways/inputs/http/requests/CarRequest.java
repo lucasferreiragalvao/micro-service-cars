@@ -20,7 +20,7 @@ public abstract class CarRequest implements Serializable {
 
     @ApiModelProperty(position = 2)
     @NotNull(message = "{required.field}")
-    private Classification classification;
+    private String codeclassification;
 
     @ApiModelProperty(position = 3)
     @NotNull(message = "{required.field}")

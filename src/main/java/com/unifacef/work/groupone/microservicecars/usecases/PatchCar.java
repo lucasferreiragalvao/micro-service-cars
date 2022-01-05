@@ -1,10 +1,12 @@
 package com.unifacef.work.groupone.microservicecars.usecases;
 
 import com.unifacef.work.groupone.microservicecars.domains.Car;
+import com.unifacef.work.groupone.microservicecars.domains.Classification;
 import com.unifacef.work.groupone.microservicecars.exceptions.BadRequestException;
 import com.unifacef.work.groupone.microservicecars.exceptions.MessageKey;
 import com.unifacef.work.groupone.microservicecars.exceptions.NotFoundException;
 import com.unifacef.work.groupone.microservicecars.gateways.outputs.CarDataGateway;
+import com.unifacef.work.groupone.microservicecars.gateways.outputs.ClassificationDataGateway;
 import com.unifacef.work.groupone.microservicecars.utils.MessageUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class PatchCar {
     private final CarDataGateway carDataGateway;
+    private final ClassificationDataGateway classificationDataGateway;
     private final MessageUtils messageUtils;
 
     public Car execute(final Car car){
@@ -37,6 +40,12 @@ public class PatchCar {
 
         if(car.getOdomenter() != null){
             oldCar.setOdomenter(car.getOdomenter());
+        }
+        if(!car.getClassification().getCode().isEmpty()){
+            Classification classification = classificationDataGateway.findByCode(car.getClassification().getCode())
+                    .orElseThrow(() -> new NotFoundException(messageUtils.getMessage(MessageKey.CLASSIFICATION_NOT_FOUND,car.getClassification().getCode()))
+            );
+            oldCar.setClassification(classification);
         }
 
         Car saved = carDataGateway.save(oldCar);
