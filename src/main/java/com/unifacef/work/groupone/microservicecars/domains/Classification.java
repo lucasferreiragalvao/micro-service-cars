@@ -1,13 +1,17 @@
 package com.unifacef.work.groupone.microservicecars.domains;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
-@AllArgsConstructor
-public enum Classification {
-    SUV("suv"),
-    COMPACTO("compacto"),
-    LUXO("luxo");
+import java.time.LocalDateTime;
 
-    private String description;
+@Data
+@Builder
+public class Classification {
+    private String code;
+    private String name;
+    private Double price;
+    private LocalDateTime createdAt;
+    private LocalDateTime lastModifiedDate;
 
 }

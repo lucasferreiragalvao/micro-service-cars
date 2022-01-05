@@ -19,7 +19,7 @@ public class CarDocument {
     private String id;
     private int year;
     private String color;
-    private Classification classification;
+    private ClassificationCarDocument classification;
     private BrandDocument brand;
     private String model;
     private String name;
@@ -36,7 +36,7 @@ public class CarDocument {
         this.id = car.getCode();
         this.year = car.getYear();
         this.color = car.getColor();
-        this.classification = Classification.valueOf(car.getClassification().toString());
+        this.classification = new ClassificationCarDocument(car.getClassification());
         this.brand = new BrandDocument(car.getBrand());
         this.model = car.getModel();
         this.name = car.getName();
@@ -54,7 +54,7 @@ public class CarDocument {
                 .code(this.id)
                 .year(this.year)
                 .color(this.color)
-                .classification(this.classification)
+                .classification(this.classification.toDomain())
                 .brand(Brand.builder().imported(this.brand.getImported()).name(this.brand.getName()).build())
                 .model(this.model)
                 .name(this.name)

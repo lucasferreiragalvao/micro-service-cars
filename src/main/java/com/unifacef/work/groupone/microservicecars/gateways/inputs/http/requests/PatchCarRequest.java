@@ -1,9 +1,11 @@
 package com.unifacef.work.groupone.microservicecars.gateways.inputs.http.requests;
 
 import com.unifacef.work.groupone.microservicecars.domains.Car;
+import com.unifacef.work.groupone.microservicecars.domains.Classification;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data
@@ -20,12 +22,16 @@ public class PatchCarRequest implements Serializable {
     @ApiModelProperty(position = 3)
     private Long odomenter;
 
+    @ApiModelProperty(position = 2)
+    private String codeclassification;
+
     public Car toDomain(final String code){
         return Car.builder()
                 .code(code)
                 .odomenter(this.odomenter)
                 .isActive(this.isActive)
                 .note(this.note)
+                .classification(Classification.builder().code(this.codeclassification).build())
                 .build();
     }
 }
