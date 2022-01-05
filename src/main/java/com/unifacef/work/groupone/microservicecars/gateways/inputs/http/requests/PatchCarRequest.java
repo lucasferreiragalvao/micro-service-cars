@@ -5,7 +5,6 @@ import com.unifacef.work.groupone.microservicecars.domains.Classification;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data

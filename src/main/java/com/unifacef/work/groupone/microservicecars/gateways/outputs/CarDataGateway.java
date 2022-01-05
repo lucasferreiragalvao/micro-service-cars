@@ -14,5 +14,7 @@ public interface CarDataGateway {
 
     Optional<Car> findByBoard(String board);
 
+    Optional<Car> findByClassificationCode(String code);
+
     Page<Car> findByPage(Pageable pageable);
 }
