@@ -5,6 +5,8 @@ import com.unifacef.work.groupone.microservicecars.gateways.outputs.Classificati
 import com.unifacef.work.groupone.microservicecars.gateways.outputs.mongodb.documents.ClassificationDocument;
 import com.unifacef.work.groupone.microservicecars.gateways.outputs.mongodb.repositories.ClassificationRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -32,5 +34,10 @@ public class ClassificationDataGatewayMongoImpl implements ClassificationDataGat
     @Override
     public Optional<Classification> findByCode(String code) {
         return classificationRepository.findById(code).map(ClassificationDocument::toDomain);
+    }
+
+    @Override
+    public Page<Classification> findByPage(Pageable pageable) {
+        return classificationRepository.findAll(pageable).map(ClassificationDocument::toDomain);
     }
 }
