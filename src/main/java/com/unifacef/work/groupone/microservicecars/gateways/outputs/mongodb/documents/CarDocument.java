@@ -25,6 +25,7 @@ public class CarDocument {
     private String name;
     private String board;
     private Double tankSize;
+    private String tankStatus;
     private Long odomenter;
     private Boolean isActive;
     private String note;
@@ -42,6 +43,7 @@ public class CarDocument {
         this.name = car.getName();
         this.board = car.getBoard();
         this.tankSize = car.getTankSize();
+        this.tankStatus = car.getTankStatus();
         this.odomenter = car.getOdomenter();
         this.isActive = car.getIsActive();
         this.note = car.getNote();
@@ -61,6 +63,7 @@ public class CarDocument {
                 .board(this.board)
                 .odomenter(this.odomenter)
                 .tankSize(this.tankSize)
+                .tankStatus(this.tankStatus)
                 .isActive(this.isActive)
                 .note(this.note)
                 .createdAt(this.createdDate)

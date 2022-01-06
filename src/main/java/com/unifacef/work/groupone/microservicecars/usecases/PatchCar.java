@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -41,11 +43,15 @@ public class PatchCar {
         if(car.getOdomenter() != null){
             oldCar.setOdomenter(car.getOdomenter());
         }
-        if(!car.getClassification().getCode().isEmpty()){
+        if(car.getClassification() != null && car.getClassification().getCode().isEmpty()){
             Classification classification = classificationDataGateway.findByCode(car.getClassification().getCode())
                     .orElseThrow(() -> new NotFoundException(messageUtils.getMessage(MessageKey.CLASSIFICATION_NOT_FOUND,car.getClassification().getCode()))
             );
             oldCar.setClassification(classification);
+        }
+
+        if(!Objects.isNull(car.getTankStatus())){
+            oldCar.setTankStatus(car.getTankStatus());
         }
 
         Car saved = carDataGateway.save(oldCar);
