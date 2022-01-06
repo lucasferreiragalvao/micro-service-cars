@@ -17,6 +17,7 @@ public class Car {
     private String name;
     private String board;
     private Double tankSize;
+    private String tankStatus;
     private Long odomenter;
     private Boolean isActive;
     private String note;
