@@ -28,7 +28,9 @@ public class PatchCar {
         Car oldCar = carDataGateway.findByCode(car.getCode())
                 .orElseThrow(() -> new NotFoundException(messageUtils.getMessage(MessageKey.CAR_NOT_FOUND,car.getCode())));
 
-        validateValueOdomenter(car.getOdomenter(),oldCar.getOdomenter());
+        if(!Objects.isNull(car.getOdomenter())) {
+            validateValueOdomenter(car.getOdomenter(), oldCar.getOdomenter());
+        }
 
         if(car.getIsActive() != null) {
             oldCar.setIsActive(car.getIsActive());
